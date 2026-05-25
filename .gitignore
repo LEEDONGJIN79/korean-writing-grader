@@ -1,0 +1,65 @@
+# ========================================
+# 학생 개인정보 보호 — 절대 Git에 올리지 않음
+# ========================================
+
+# 채점 결과 폴더 전체 (학생 자료·점수·코멘트 포함)
+outputs/
+
+# examples/ 안의 학생 자료
+examples/**/학생자료/
+examples/**/감정경험쓰기/
+examples/**/창작시/
+examples/**/시해설서/
+examples/**/student_*
+
+# 루브릭 원본 파일 (한글/Word/PDF) — 학교마다 다름, Git 추적 X
+examples/**/*.hwp
+examples/**/*.hwpx
+examples/**/*.docx
+examples/**/*.pdf
+examples/**/루브릭.*
+examples/**/Rubric.*
+
+# ========================================
+# 시스템·에디터 임시 파일
+# ========================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Linux
+*~
+.directory
+
+# 에디터
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python (있을 경우)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.pytest_cache/
+
+# Node (있을 경우)
+node_modules/
+
+# ========================================
+# 백업·임시 파일
+# ========================================
+*.tmp
+*.bak
+*.backup
+*.old
