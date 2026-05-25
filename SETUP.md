@@ -33,7 +33,49 @@
 
 ## 📥 1단계: 저장소 다운로드
 
-### 방법 A: ZIP 다운로드 (가장 쉬움, 추천)
+### ⭐ 방법 A: Claude에게 직접 요청 (가장 쉬움, 권장)
+
+**압축 풀기·터미널 명령어 같은 거 안 해도 됩니다.** Claude Desktop이 알아서 받아옵니다.
+
+#### 전제 조건
+Claude Desktop의 **파일 시스템 접근 권한(Local Agent Mode)** 이 활성화되어 있어야 합니다.
+
+- macOS: Claude Desktop 설정 → "Allow Claude to access files" 또는 "Local Agent" 옵션 활성화
+- 처음 실행 시 권한 요청 팝업이 뜨면 **허용** 클릭
+
+#### 명령
+Claude Desktop 새 대화창에 다음을 그대로 붙여넣습니다:
+
+```
+https://github.com/LEEDONGJIN79/korean-writing-grader
+이 도구를 내 Documents 폴더에 설치해줘.
+설치 후 폴더 구조를 확인해서 모든 게 준비됐는지 점검해줘.
+```
+
+#### Claude가 자동으로 할 일
+1. `~/Documents/`(또는 사용자 지정 위치)로 이동
+2. `git clone` 실행해 저장소 다운로드
+3. 폴더 안의 `CLAUDE.md`를 읽어 시스템 인식
+4. 폴더 구조·필수 파일 점검
+5. "설치 완료. 첫 평가 정보를 알려주세요" 보고
+
+→ 1~2분 안에 끝. ZIP 해제·이름 변경·이동 같은 작업 일절 없음.
+
+#### 만약 Claude가 "git이 설치되지 않았다"고 답하면
+
+Claude에게 그대로 말하면 됩니다:
+
+```
+git이 없으면 ZIP 다운로드 방식으로 받아줘.
+```
+
+Claude가 `curl`로 ZIP 다운로드 → `unzip`으로 압축 해제 → 폴더 이름 정리까지 자동 처리합니다.
+
+---
+
+### 방법 B: ZIP 직접 다운로드 (Claude 권한이 제한적일 때)
+
+Local Agent Mode가 막혀 있거나 자동 설치가 실패할 때:
 
 1. https://github.com/LEEDONGJIN79/korean-writing-grader 접속
 2. 우측 상단 초록색 **"Code"** 버튼 클릭
@@ -42,43 +84,40 @@
 5. 폴더 이름을 `korean-writing-grader`로 변경 (-main 제거)
 6. 원하는 위치로 이동 (예: `~/Documents/` 또는 `~/Desktop/`)
 
-### 방법 B: Git CLI 사용 (Git 사용 경험 있는 분)
+### 방법 C: Git CLI 사용 (Git 사용자)
 
 ```bash
-# 원하는 폴더로 이동
 cd ~/Documents
-
-# 저장소 복제
 git clone https://github.com/LEEDONGJIN79/korean-writing-grader.git
-
-# 폴더로 들어가기
 cd korean-writing-grader
 ```
 
 ---
 
-## 🚀 2단계: Claude Desktop에서 폴더 열기
+## 🚀 2단계: Claude Desktop이 폴더 인식하게 하기
 
-### macOS
+### 방법 A로 설치한 경우 (자동)
+
+Claude가 이미 폴더를 인식한 상태입니다. **추가 작업 없음.** 바로 3단계로.
+
+### 방법 B/C로 설치한 경우 (수동 폴더 추가)
+
+#### macOS
 
 1. **Claude Desktop 실행**
 2. 새 대화 시작
 3. 입력창 **하단의 📎 (클립 아이콘)** 클릭 또는 키보드 단축키
 4. **"Add folder"** 또는 **"폴더 추가"** 선택
 5. 다운로드한 `korean-writing-grader` 폴더 선택
-6. Claude가 자동으로 `CLAUDE.md`를 읽어 시스템을 인식
 
-### Windows
+#### Windows
 
 1. **Claude Desktop 실행**
 2. 새 대화 시작
 3. 입력창 하단 **폴더 추가 버튼** 클릭
 4. `korean-writing-grader` 폴더 선택
-5. Claude가 자동 인식
 
-### 인식 확인
-
-폴더를 추가한 후 다음과 같이 말해 보세요:
+### 인식 확인 (모든 방법 공통)
 
 ```
 이 폴더 뭐야? 자세히 알려줘.
