@@ -358,7 +358,7 @@
 <header>
   <h1>📘 Korean Writing Grader</h1>
   <p class="subtitle">설치 및 사용 설명서 — 처음부터 끝까지</p>
-  <p class="meta">컴퓨터 초보 교사를 위한 친절한 안내서 · <strong>v0.9</strong> · 2026년 5월</p>
+  <p class="meta">컴퓨터 초보 교사를 위한 친절한 안내서 · <strong>v1.0</strong> · 2026년 5월</p>
 </header>
 
 <nav class="toc">
@@ -394,7 +394,7 @@
 
 <h3>이 도구가 해주는 것</h3>
 <ol>
-  <li>학생 글을 6명의 AI 전문가가 각자 다른 시각으로 채점</li>
+  <li>학생 글을 실제 학교 평가 절차(채점교사→학생이의→검토교사→의장 4단계)로 채점</li>
   <li>의견이 갈리면 외부 AI(ChatGPT, Gemini)에게 한 번 더 확인</li>
   <li>그래도 애매하면 "선생님 확인 필요"로 표시</li>
   <li>학생용 리포트, 교사용 검토 자료, 채점표(엑셀)를 자동으로 만들어 줌</li>
@@ -820,77 +820,110 @@
 </div>
 
 <div class="step">
-  <span class="step-num">2</span><strong>🆕 v0.7: Claude가 첫 학생 1명을 먼저 정밀 채점 후 확인 요청</strong>
+  <span class="step-num">2</span><strong>🆕 v1.0: Claude가 시작 전에 세 가지를 물어봅니다</strong>
 </div>
 
 <div class="info">
-  <strong>📊 1-A: 첫 학생 검증</strong><br>
-  Claude가 첫 학생 1명만 먼저 채점한 뒤 결과를 보여줍니다:
+  <strong>📊 사용자 선택 ① 채점 교사 수준 (1차 채점)</strong>
+  <table style="margin-top: 10px;">
+    <tr><th>옵션</th><th>설명</th><th>적합한 평가</th></tr>
+    <tr><td>🔵 <strong>엄격</strong></td><td>글에 명백한 증거 있어야 점수 인정. 망설일 땐 낮은 쪽.</td><td>외부 평가·중요 시험</td></tr>
+    <tr><td>🟢 <strong>느슨</strong></td><td>학생이 시도한 것 적극 인정. 망설일 땐 높은 쪽.</td><td>학기 중·성장 평가</td></tr>
+  </table>
+</div>
+
+<div class="info">
+  <strong>📊 사용자 선택 ② 의장 수준 (최종 결정)</strong>
+  <table style="margin-top: 10px;">
+    <tr><th>옵션</th><th>설명</th></tr>
+    <tr><td>🔵 <strong>엄격</strong></td><td>망설임 → 낮은 쪽. 증거 우선.</td></tr>
+    <tr><td>⚖️ <strong>균형</strong> ⭐ 추천</td><td>채점교사·학생·검토교사 의견 종합. 가장 안정적.</td></tr>
+    <tr><td>🟢 <strong>느슨</strong></td><td>망설임 → 높은 쪽. 학생 시도 적극 인정.</td></tr>
+  </table>
+</div>
+
+<div class="info">
+  <strong>📊 사용자 선택 ③ 채점 팀 수 (v1.0 신규)</strong><br>
+  채점 팀이 많을수록 빠르지만 토큰 비용이 늘어납니다.
+  <table style="margin-top: 10px;">
+    <tr><th>옵션</th><th>학급 25명 시간</th><th>토큰 비용</th><th>안정성</th><th>추천 케이스</th></tr>
+    <tr><td><strong>1팀 (순차)</strong></td><td>30분~1시간</td><td>가장 낮음</td><td>⭐⭐⭐</td><td>정밀 점검·적은 인원</td></tr>
+    <tr><td><strong>5팀</strong> ⭐</td><td>5~10분</td><td>중간</td><td>⭐⭐⭐</td><td>일반 수행평가 (추천)</td></tr>
+    <tr><td><strong>10팀</strong></td><td>3~5분</td><td>중상</td><td>⭐⭐</td><td>빠른 확인용</td></tr>
+    <tr><td><strong>전체병렬</strong></td><td>2~3분</td><td>가장 높음</td><td>⭐</td><td>시간이 매우 부족할 때</td></tr>
+  </table>
+</div>
+
+<div class="tip">
+  <strong>💡 왜 5팀을 추천하나요?</strong><br>
+  · 학급 25~30명을 5~10분에 완주 (수업·회의 다녀와도 끝남)<br>
+  · 토큰 비용·안정성의 균형이 가장 좋음<br>
+  · 묶음 단위로 진행되어 오류 발생 시 손실 최소<br>
+  · Claude의 한 번에 처리할 수 있는 한도(25개) 안에서 안전<br><br>
+  <strong>💰 토큰 비용은 왜 차이가 나나요?</strong><br>
+  병렬 팀 수만큼 같은 시스템 안내문(컨텍스트)을 따로 보내야 해서, 팀이 많을수록 토큰 비용이 약간 늘어납니다. 5팀이면 5번, 전체병렬(25명)이면 25번 보내는 셈입니다.
+</div>
+
+<div class="step">
+  <span class="step-num">3</span><strong>🆕 v0.7: Claude가 첫 학생 1명을 먼저 정밀 채점 후 확인 요청</strong>
+</div>
+
+<div class="info">
+  <strong>📊 첫 학생 검증</strong><br>
+  세 가지 선택 후, Claude가 첫 학생 1명만 먼저 4단계로 채점한 뒤 결과를 보여줍니다:
   <div class="screen-mock" style="margin-top: 10px;">
-    <div class="screen-title">Claude 응답 예시</div>
-    [첫 학생 검증 완료]<br><br>
-    학생: 2-3-1 김민준<br>
-    점수: 7점 / 7점<br>
-    검토 라벨: 🟢 자동확정<br>
-    회색지대: 없음<br><br>
+    <div class="screen-title">Claude 응답 예시 (v0.9 4단계)</div>
+    [첫 학생 정밀 채점 완료]<br><br>
+    학생: 2-1-1 강병민<br>
+    ① 채점교사_느슨: 17점 (조건 ② 망설임 4~5)<br>
+    ② 학생 이의: 있음 (조건 ①·④에 이의)<br>
+    ③ 검토교사 보수: 17점 유지, 탐색: 19점<br>
+    ④ 의장_균형: <strong>최종 18점</strong><br>
+    검토 라벨: 🟢 자동확정 (외부 검토 불필요)<br><br>
     이 결과가 선생님 직관과 맞는지 확인해 주세요.<br><br>
-    · "맞아, 계속해줘" → 모드 선택 단계로<br>
+    · "맞아, 계속해줘" → 자동 완주<br>
     · "조건 ○이 이상해" → 그 학생만 재채점<br>
     · "잠깐 멈춰" → 작업 중단
   </div>
 </div>
 
 <div class="step">
-  <span class="step-num">3</span><strong>🆕 모드 선택 — 정석 vs 효율</strong>
+  <span class="step-num">4</span><strong>🚀 자동 완주 (선택한 팀 수로 진행)</strong>
 </div>
 
 <div class="info">
-  <strong>📊 1-B: 어느 모드로 가시겠어요?</strong><br>
-  교사가 "맞아, 계속해줘"라고 하면 Claude가 모드 선택을 안내합니다:
-  <table style="margin-top: 10px;">
-    <tr><th></th><th>🐢 정석 모드</th><th>🚀 효율 모드 (추천)</th></tr>
-    <tr><td>묶음 크기</td><td>1~2명</td><td>5명</td></tr>
-    <tr><td>중간 확인</td><td>묶음마다</td><td>처음만 (자동 완주)</td></tr>
-    <tr><td>자리 비울 수 있는지</td><td>안 됨</td><td><strong>가능 (수업·회의)</strong></td></tr>
-    <tr><td>예상 응답 사이클</td><td>10~15회</td><td><strong>1회</strong></td></tr>
-    <tr><td>적합한 상황</td><td>자세히 검토</td><td>수업 가야 할 때</td></tr>
-  </table>
+  <strong>📊 모든 학생 자동 채점 (사용자 자리 비워도 됨)</strong><br>
+  · 선택한 팀 수만큼 동시에 진행 (예: 5팀 = 5명씩 묶음)<br>
+  · 사용자 확인 없이 다음 묶음으로 자동 진행<br>
+  · 오류 없으면 끝까지 진행<br>
+  · 채점 완료 후 학생 리포트·채점표 자동 생성<br>
+  · 🔴 필수검토 학생만 _외부검증/ 통합 폴더에 검토 요청문 자동 생성 (v0.8)
 </div>
 
 <div class="tip">
-  <strong>💡 효율 모드 추천 시나리오:</strong><br>
-  "오전 9시 채점 시작 → 9:05 효율 모드 선택 → 12:00까지 수업·회의 → 점심 후 돌아와서 완성된 결과 확인 → 🔴 필수검토 학생만 외부 검증" — 이런 흐름이 가능합니다.
-</div>
-
-<div class="step">
-  <span class="step-num">4</span><strong>🚀 효율 모드 선택 시 자동 완주</strong>
-</div>
-
-<div class="info">
-  <strong>📊 1-C: 모든 학생 자동 채점 (사용자 자리 비워도 됨)</strong><br>
-  · 5명씩 묶어 채점 진행<br>
-  · 사용자 확인 없이 다음 묶음으로 자동 진행<br>
-  · 오류 없으면 끝까지 진행<br>
-  · 채점 완료 후 v0.6 차등 산출물 자동 생성<br>
-  · 🔴 필수검토 학생만 _외부검증/ 통합 폴더에 검토 요청문 자동 생성 (v0.8)
+  <strong>💡 추천 시나리오 (5팀 + 효율 모드):</strong><br>
+  "오전 9시 채점 시작 → 9:05 세 가지 선택 + 첫 학생 검증 → 9:15까지 자동 완주 → 점심 후 결과 확인 → 🔴 필수검토 학생만 외부 검증" — 이런 흐름이 가능합니다.
 </div>
 
 <h3>각 단계에서 일어나는 일</h3>
 
 <div class="info">
-  <strong>📊 1단계: 채점 진행 (학생 30명 기준 약 30~60분)</strong><br>
-  Claude가 학생 1명씩 6명의 AI 페르소나로 채점합니다. 효율 모드에서는 5명을 한 번에 병렬 처리합니다.
+  <strong>📊 1단계: 채점 진행 (학생 25명 기준 5팀이면 약 5~10분)</strong><br>
+  Claude가 학생 1명씩 v0.9 4단계 절차로 채점합니다. 선택한 팀 수만큼 동시에 병렬 진행합니다.
 </div>
 
 <div class="screen-mock">
-  <div class="screen-title">Claude 진행 화면 예시</div>
-  학생 1 채점 중 (1/30)...<br>
-  · 형식주의자: 조건 ① 충족 ✓<br>
-  · 텍스트 충실파: 조건 ② 충족 ✓<br>
-  · 시도 옹호자: 조건 ③ 충족 ✓<br>
-  ...<br><br>
-  학생 1 완료. 점수: 7점, 회색지대 없음 🟢<br><br>
-  학생 2 채점 중 (2/30)...
+  <div class="screen-title">Claude 진행 화면 예시 (5팀)</div>
+  [묶음 1: 학생 1~5] 단계 ① 채점교사_느슨 동시 시작...<br>
+  · 학생 1: 17점, 망설임 [②]<br>
+  · 학생 2: 19점, 망설임 [③]<br>
+  · 학생 3: 15점, 망설임 [①③]<br>
+  · 학생 4: 13점, 망설임 [②④]<br>
+  · 학생 5: 18점, 망설임 [②]<br><br>
+  [묶음 1] 단계 ② 학생 이의 동시 진행...<br>
+  [묶음 1] 단계 ③ 검토교사 (이의 학생만)...<br>
+  [묶음 1] 단계 ④ 의장_균형 최종 결정...<br><br>
+  [묶음 2: 학생 6~10] 시작...
 </div>
 
 <div class="info">
@@ -1239,7 +1272,7 @@
 
 <!-- ============================================ -->
 <footer>
-  <p>📘 <strong>Korean Writing Grader</strong> 사용 설명서 v0.9</p>
+  <p>📘 <strong>Korean Writing Grader</strong> 사용 설명서 v1.0</p>
   <p>제작: 이동진 (세명고등학교 국어 교사) · 도움: Claude (Anthropic)</p>
   <p>라이선스: CC BY-NC-SA 4.0 · 교육 비상업적 사용</p>
   <p style="margin-top: 16px;">
