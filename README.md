@@ -4,7 +4,10 @@
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Status: Beta](https://img.shields.io/badge/Status-Beta-orange.svg)]()
+[![Version: v0.8](https://img.shields.io/badge/Version-v0.8-green.svg)]()
 [![Language: Korean](https://img.shields.io/badge/Language-한국어-blue.svg)]()
+
+📘 **[설치 및 사용 매뉴얼 (HTML)](https://leedongjin79.github.io/korean-writing-grader/manual.html)** — 컴퓨터 초보 교사용 단계별 안내
 
 API 키 불필요. Python 설치 불필요. **Claude Desktop만 있으면** 누구나 자기 컴퓨터에서 실행할 수 있습니다.
 
