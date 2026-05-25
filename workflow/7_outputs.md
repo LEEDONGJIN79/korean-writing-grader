@@ -87,7 +87,7 @@ outputs/[평가명]/_외부검증/                ← v0.8 신설
 - `templates/student_report_summary.md` 기반 요약 리포트
 - `templates/debate_transcript_summary.md` 기반 요약 속기록
 - 회색지대 항목 중심으로 압축
-- **external_check/ 폴더는 생성하지 않음** (외부 검증 대상 아님)
+- **`_외부검증/` 폴더에 포함되지 않음** (외부 검증 대상 아님, v0.8)
 
 ### 단계 4: 🟢 자동확정 학생 처리 (가장 빠름)
 - 산출물 파일 **생성하지 않음**
